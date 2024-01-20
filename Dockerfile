@@ -58,6 +58,7 @@ RUN . /app/venv/bin/activate && \
                 tables \
                 pyarrow \
                 "polars[all]" \
+                polars-cli \
                 openpyxl \
                 apsw \
                 pydot \
