@@ -16,7 +16,7 @@ RUN chmod 700 ./build-numpy-scipy.sh && ./build-numpy-scipy.sh
 FROM ebrown/python:3.11 as assembled
 WORKDIR /app
 ARG PY_NP_VERSION=1.26.3
-ARG PY_SCIPY_VERSION=1.11.4
+ARG PY_SCIPY_VERSION=1.12.0
 ARG XGB_VERSION=2.0.3
 COPY --from=built_xgboost /tmp/bxgboost/xgboost-${XGB_VERSION}/xgboost-${XGB_VERSION}-py3-none-linux_x86_64.whl /tmp/xgboost-${XGB_VERSION}-py3-none-linux_x86_64.whl 
 COPY --from=build_numpy_scipy /tmp/numpy/numpy/dist/numpy-${PY_NP_VERSION}-cp311-cp311-linux_x86_64.whl /tmp/numpy-${PY_NP_VERSION}-cp311-cp311-linux_x86_64.whl
