@@ -14,6 +14,9 @@ RUN chmod 700 ./build-numpy-scipy.sh && ./build-numpy-scipy.sh
 # /tmp/numpy/numpy/dist/numpy-1.26.3-cp311-cp311-linux_x86_64.whl
 
 FROM ebrown/python:3.11 as assembled
+COPY --from=built_git /opt/git /opt/git
+ENV PATH=/opt/git/bin:${PATH}
+ENV LD_LIBRARY_PATH=/opt/git/lib:${LD_LIBRARY_PATH}
 WORKDIR /app
 ARG PY_NP_VERSION=1.26.3
 ARG PY_SCIPY_VERSION=1.12.0
@@ -71,6 +74,7 @@ RUN . /app/venv/bin/activate && \
                 scikit-learn \
                 scikit-image \
                 sklearn-pandas \
+                joblib \
                 lxml \
                 isort \
                 opencv-contrib-python-headless \
@@ -81,6 +85,7 @@ RUN . /app/venv/bin/activate && \
                 jupyter-server-proxy \
                 jupyter_http_over_ws \
                 jupyter-collaboration \
+                jupyterlab-git \
                 pyyaml \
                 yapf \
                 nbqa[toolchain] \
@@ -94,7 +99,11 @@ RUN . /app/venv/bin/activate && \
                 connectorx \
                 deltalake \
                 gevent \
+                requests \
+                httpx \
+                fastapi \
                 pydantic \
+                uvicorn[standard] \
                 xlsx2csv \
                 sqlalchemy && find ./ \
                                     \( \
@@ -142,7 +151,7 @@ RUN yum install dnf-plugins-core -y && \
                 procps-ng \
                 findutils -y && \
                 dnf clean all;
-ARG INSTALL_NODE_VERSION=20.10.0
+ARG INSTALL_NODE_VERSION=20.11.0
 RUN mkdir /opt/nodejs && \
     cd /opt/nodejs && \
     curl -L https://nodejs.org/dist/v${INSTALL_NODE_VERSION}/node-v${INSTALL_NODE_VERSION}-linux-x64.tar.xz | xzcat | tar -xf - && \
@@ -162,6 +171,7 @@ WORKDIR /tmp
 COPY installmkl.sh ./installmkl.sh
 RUN chmod 700 ./installmkl.sh && ./installmkl.sh
 COPY --from=build_numpy_scipy /opt/python/py311 /opt/python/py311
+COPY --from=built_git /opt/git /opt/git
 ENV LD_LIBRARY_PATH=/opt/python/py311/lib:${LD_LIBRARY_PATH}
 ENV PATH=/opt/git/bin:/opt/python/py311/bin:${PATH}
 COPY --from=assembled /app/venv /app/venv/
