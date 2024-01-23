@@ -81,6 +81,7 @@ RUN . /app/venv/bin/activate && \
                 requests \
                 httpx \
                 fastapi \
+                python-multipart \
                 pydantic \
                 uvicorn[standard]  && \
         pip3 install --no-cache-dir \
