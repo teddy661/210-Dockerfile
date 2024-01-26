@@ -48,13 +48,13 @@ RUN . /app/venv/bin/activate && \
                 jupyterlab-lsp==5.0.2 \
                 jupyter-lsp==2.2.2 \
                 jupyter_server \
+                python-lsp-server[all] \
                 ipywidgets \
                 jupyter_bokeh \
                 jupyter-server-proxy \
                 jupyter_http_over_ws \
                 jupyter-collaboration \
                 jupyterlab-git \
-                jedi-language-server \
                 ipyparallel \
                 ipywidgets \
                 blake3 \
