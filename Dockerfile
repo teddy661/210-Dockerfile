@@ -49,6 +49,7 @@ RUN . /app/venv/bin/activate && \
                 jupyterlab>=4.0.11 \
                 jupyterlab-lsp==5.0.2 \
                 jupyter-lsp==2.2.2 \
+                python-lsp-server[all] \
                 jupyter_server \
                 black[jupyter] \
                 matplotlib \
@@ -86,7 +87,6 @@ RUN . /app/venv/bin/activate && \
                 jupyter_http_over_ws \
                 jupyter-collaboration \
                 jupyterlab-git \
-                jedi-language-server \
                 pyyaml \
                 yapf \
                 nbqa[toolchain] \
