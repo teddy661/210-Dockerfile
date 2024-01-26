@@ -86,6 +86,7 @@ RUN . /app/venv/bin/activate && \
                 jupyter_http_over_ws \
                 jupyter-collaboration \
                 jupyterlab-git \
+                jedi-language-server \
                 pyyaml \
                 yapf \
                 nbqa[toolchain] \
