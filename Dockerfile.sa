@@ -38,11 +38,12 @@ RUN . /app/venv/bin/activate && \
         pip3 install --no-cache-dir /tmp/numpy-${PY_NP_VERSION}-cp311-cp311-linux_x86_64.whl /tmp/scipy-${PY_SCIPY_VERSION}-cp311-cp311-linux_x86_64.whl && \
         pip3 install --no-cache-dir \
                 torch torchvision torchaudio \
-                opencv-contrib-python-headless \
                 pycocotools \
-                matplotlib \
                 onnxruntime \
                 onnx \
+                git+https://github.com/facebookresearch/segment-anything.git \
+                opencv-contrib-python-headless \
+                matplotlib \
                 aiohttp[speedups] \
                 jupyterlab>=4.0.11 \
                 jupyterlab-lsp==5.0.2 \
@@ -56,37 +57,52 @@ RUN . /app/venv/bin/activate && \
                 jupyter-collaboration \
                 jupyterlab-git \
                 ipyparallel \
-                ipywidgets \
-                blake3 \
+                ipython \
                 papermill[all] \
+                bokeh \
+                seaborn \
+                blake3 \
                 psutil \
                 mypy \
+                "pandas[performance, excel, computation, plot, output_formatting, html, parquet, hdf5]" \
                 tables \
-                pyarrow \
                 "polars[all]" \
                 polars-cli \
+                openpyxl \
                 apsw \
+                pydot \
+                plotly \
+                pydot-ng \
+                pydotplus \
+                graphviz \
+                lxml \
+                beautifulsoup4 \
                 scikit-learn-intelex \
                 scikit-learn \
                 scikit-image \
+                sklearn-pandas \
+                statsmodels \
                 joblib \
-                ipython \
                 black[jupyter] \
                 nbqa[toolchain] \
                 isort \
+                yapf \
+                nbqa[toolchain] \
                 ruff \
                 pipdeptree \
                 bottleneck \ 
                 pytest \
                 zstandard \
+                cloudpickle \
+                connectorx \
+                deltalake \
+                gevent \
                 requests \
                 httpx \
                 fastapi \
                 python-multipart \
                 pydantic \
                 uvicorn[standard]  && \
-        pip3 install --no-cache-dir \
-                git+https://github.com/facebookresearch/segment-anything.git  && \
                 find ./ \
                     \( \
                     \( -type d -a \( -name __pycache__ \) \) \

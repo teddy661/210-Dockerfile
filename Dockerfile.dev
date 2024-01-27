@@ -41,26 +41,30 @@ RUN . /app/venv/bin/activate && \
         pip3 install --no-cache-dir /tmp/numpy-${PY_NP_VERSION}-cp311-cp311-linux_x86_64.whl /tmp/scipy-${PY_SCIPY_VERSION}-cp311-cp311-linux_x86_64.whl /tmp/xgboost-${XGB_VERSION}-py3-none-linux_x86_64.whl /tmp/xgboost-${XGB_VERSION}-py3-none-linux_x86_64.whl && \
         pip3 install --no-cache-dir \
                 tensorflow==2.15.0.post1 \
-                cython \
-                ipython \
-                bokeh \
-                seaborn \
+                opencv-contrib-python-headless \
+                matplotlib \
                 aiohttp[speedups] \
                 jupyterlab>=4.0.11 \
                 jupyterlab-lsp==5.0.2 \
                 jupyter-lsp==2.2.2 \
-                python-lsp-server[all] \
                 jupyter_server \
-                black[jupyter] \
-                matplotlib \
-                blake3 \
+                python-lsp-server[all] \
+                ipywidgets \
+                jupyter_bokeh \
+                jupyter-server-proxy \
+                jupyter_http_over_ws \
+                jupyter-collaboration \
+                jupyterlab-git \
+                ipyparallel \
+                ipython \
                 papermill[all] \
-                statsmodels \
+                bokeh \
+                seaborn \
+                blake3 \
                 psutil \
                 mypy \
                 "pandas[performance, excel, computation, plot, output_formatting, html, parquet, hdf5]" \
                 tables \
-                pyarrow \
                 "polars[all]" \
                 polars-cli \
                 openpyxl \
@@ -70,29 +74,21 @@ RUN . /app/venv/bin/activate && \
                 pydot-ng \
                 pydotplus \
                 graphviz \
+                lxml \
                 beautifulsoup4 \
                 scikit-learn-intelex \
                 scikit-learn \
                 scikit-image \
                 sklearn-pandas \
+                statsmodels \
                 joblib \
-                lxml \
+                black[jupyter] \
+                nbqa[toolchain] \
                 isort \
-                opencv-contrib-python-headless \
-                ipyparallel \
-                mlxtend \
-                ipywidgets \
-                jupyter_bokeh \
-                jupyter-server-proxy \
-                jupyter_http_over_ws \
-                jupyter-collaboration \
-                jupyterlab-git \
-                pyyaml \
                 yapf \
                 nbqa[toolchain] \
                 ruff \
                 pipdeptree \
-                hydra-core \
                 bottleneck \ 
                 pytest \
                 zstandard \
@@ -106,8 +102,12 @@ RUN . /app/venv/bin/activate && \
                 python-multipart \
                 pydantic \
                 uvicorn[standard] \
+                hydra-core \
+                mlxtend \
+                pyyaml \
                 xlsx2csv \
-                sqlalchemy && find ./ \
+                cython \
+                sqlalchemy && \find ./ \
                                     \( \
                                     \( -type d -a \( -name __pycache__ \) \) \
                                     -o \
