@@ -47,6 +47,7 @@ RUN . /app/venv/bin/activate && \
                 jupyterlab>=4.0.11 \
                 jupyterlab-lsp==5.0.2 \
                 jupyter-lsp==2.2.2 \
+                python-lsp-server[all] \
                 jupyter_server \
                 python-lsp-server[all] \
                 ipywidgets \
@@ -69,9 +70,7 @@ RUN . /app/venv/bin/activate && \
                 scikit-learn-intelex \
                 scikit-learn \
                 scikit-image \
-                joblib \
-                ipython \
-                black[jupyter] \
+
                 nbqa[toolchain] \
                 isort \
                 ruff \
@@ -79,20 +78,22 @@ RUN . /app/venv/bin/activate && \
                 bottleneck \ 
                 pytest \
                 zstandard \
+
                 requests \
                 httpx \
                 fastapi \
                 python-multipart \
                 pydantic \
-                uvicorn[standard]  && \
-        pip3 install --no-cache-dir \
-                git+https://github.com/facebookresearch/segment-anything.git  && \
-                find ./ \
-                    \( \
-                    \( -type d -a \( -name __pycache__ \) \) \
-                    -o \
-                    \( -type f -a \( -name '*.pyc' -o -name '*.pyo' \) \) \
-                \) -exec rm -rf '{}' +;           
+
+                uvicorn[standard] \
+                xlsx2csv \
+                sqlalchemy && find ./ \
+                                    \( \
+                                    \( -type d -a \( -name __pycache__ \) \) \
+                                    -o \
+                                    \( -type f -a \( -name '*.pyc' -o -name '*.pyo' \) \) \
+                                \) -exec rm -rf '{}' +;           
+
 
 FROM nvidia/cuda:12.2.2-cudnn8-runtime-rockylinux8 as prod
 RUN yum install dnf-plugins-core -y && \
