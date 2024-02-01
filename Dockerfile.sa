@@ -60,6 +60,7 @@ RUN . /app/venv/bin/activate && \
                 jupyterlab-git \
                 ipyparallel \
                 ipython \
+                tdqm \
                 papermill[all] \
                 bokeh \
                 seaborn \
