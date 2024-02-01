@@ -100,6 +100,7 @@ RUN . /app/venv/bin/activate && \
                 deltalake \
                 gevent \
                 requests \
+                niquests \
                 httpx \
                 fastapi \
                 python-multipart \
@@ -170,7 +171,8 @@ RUN ssh-keygen -f /etc/ssh/ssh_host_rsa_key -N '' -t rsa \
     && ssh-keygen -f /etc/ssh/ssh_host_dsa_key -N '' -t dsa \
     && ssh-keygen -f /etc/ssh/ssh_host_ecdsa_key -N '' -t ecdsa -b 521 \
     && ssh-keygen -f /etc/ssh/ssh_host_ed25519_key -N '' -t ed25519
-
+RUN curl --proto '=https' --tlsv1.3 -sSf https://sh.rustup.rs  | bash -s -- -y
+RUN source "$HOME/.cargo/env" && cargo install b3sum
 ENV PYDEVD_DISABLE_FILE_VALIDATION=1
 WORKDIR /tmp
 COPY installmkl.sh ./installmkl.sh

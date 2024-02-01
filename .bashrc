@@ -11,3 +11,4 @@ if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 . /opt/intel/oneapi/setvars.sh
+source "$HOME/.cargo/env"
