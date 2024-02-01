@@ -42,6 +42,8 @@ RUN . /app/venv/bin/activate && \
         pip3 install --no-cache-dir \
                 tensorflow==2.15.0.post1 \
                 opencv-contrib-python-headless \
+                pillow \
+                heic2png \
                 matplotlib \
                 aiohttp[speedups] \
                 jupyterlab>=4.0.11 \

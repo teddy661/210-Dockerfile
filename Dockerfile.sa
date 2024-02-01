@@ -43,6 +43,8 @@ RUN . /app/venv/bin/activate && \
                 onnx \
                 git+https://github.com/facebookresearch/segment-anything.git \
                 opencv-contrib-python-headless \
+                pillow \
+                heic2png \
                 matplotlib \
                 aiohttp[speedups] \
                 jupyterlab>=4.0.11 \
