@@ -102,7 +102,7 @@ RUN . /app/venv/bin/activate && \
                 gevent \
                 requests \
                 httpx \
-                fastapi \
+                fastapi[all] \
                 python-multipart \
                 pydantic \
                 uvicorn[standard]  && \
