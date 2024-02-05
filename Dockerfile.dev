@@ -1,29 +1,16 @@
 FROM ebrown/git:2.43.0 as built_git
-FROM ebrown/xgboost:2.0.3 as built_xgboost
-FROM ebrown/python:3.11 as build_numpy_scipy
-RUN dnf --disablerepo=cuda update -y
-
-COPY --from=built_git /opt/git /opt/git
-ENV PATH=/opt/git/bin:${PATH}
-ENV LD_LIBRARY_PATH=/opt/git/lib:${LD_LIBRARY_PATH}
-WORKDIR /tmp
-COPY build-numpy-scipy.sh ./
-RUN chmod 700 ./build-numpy-scipy.sh && ./build-numpy-scipy.sh
-
-# /tmp/scipy/scipy/dist/scipy-1.11.4-cp311-cp311-linux_x86_64.whl
-# /tmp/numpy/numpy/dist/numpy-1.26.3-cp311-cp311-linux_x86_64.whl
 
 FROM ebrown/python:3.11 as assembled
 COPY --from=built_git /opt/git /opt/git
 ENV PATH=/opt/git/bin:${PATH}
 ENV LD_LIBRARY_PATH=/opt/git/lib:${LD_LIBRARY_PATH}
 WORKDIR /app
+ARG XGB_VERSION=2.0.3
 ARG PY_NP_VERSION=1.26.3
 ARG PY_SCIPY_VERSION=1.12.0
-ARG XGB_VERSION=2.0.3
-COPY --from=built_xgboost /tmp/bxgboost/xgboost-${XGB_VERSION}/xgboost-${XGB_VERSION}-py3-none-linux_x86_64.whl /tmp/xgboost-${XGB_VERSION}-py3-none-linux_x86_64.whl 
-COPY --from=build_numpy_scipy /tmp/numpy/numpy/dist/numpy-${PY_NP_VERSION}-cp311-cp311-linux_x86_64.whl /tmp/numpy-${PY_NP_VERSION}-cp311-cp311-linux_x86_64.whl
-COPY --from=build_numpy_scipy /tmp/scipy/scipy/dist/scipy-${PY_SCIPY_VERSION}-cp311-cp311-linux_x86_64.whl /tmp/scipy-${PY_SCIPY_VERSION}-cp311-cp311-linux_x86_64.whl
+COPY ./xgboost-${XGB_VERSION}/xgboost-${XGB_VERSION}-py3-none-linux_x86_64.whl /tmp/xgboost-${XGB_VERSION}-py3-none-linux_x86_64.whl 
+COPY ./numpy-${PY_NP_VERSION}-cp311-cp311-linux_x86_64.whl /tmp/numpy-${PY_NP_VERSION}-cp311-cp311-linux_x86_64.whl
+COPY ./scipy-${PY_SCIPY_VERSION}-cp311-cp311-linux_x86_64.whl /tmp/scipy-${PY_SCIPY_VERSION}-cp311-cp311-linux_x86_64.whl
 COPY --from=build_numpy_scipy /opt/python/py311 /opt/python/py311
 ENV LD_LIBRARY_PATH=/opt/python/py311/lib:${LD_LIBRARY_PATH}
 ENV PATH=/opt/git/bin:/opt/python/py311/bin:${PATH}
