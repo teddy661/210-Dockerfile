@@ -1,4 +1,4 @@
-FROM ebrown/git:latest as built_git
+FROM ebrown/git:2.43.0 as built_git
 FROM ebrown/python:3.11 as build_numpy_scipy
 RUN dnf --disablerepo=cuda update -y
 
@@ -48,7 +48,7 @@ RUN . /app/venv/bin/activate && \
                 matplotlib \
                 aiohttp[speedups] \
                 jupyterlab>=4.0.11 \
-                jupyterlab-lsp==5.0.2 \
+                jupyterlab-lsp==5.0.3 \
                 jupyter-lsp==2.2.2 \
                 jupyter_server \
                 python-lsp-server[all] \
