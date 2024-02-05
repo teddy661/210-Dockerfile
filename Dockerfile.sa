@@ -163,6 +163,7 @@ ENV PYDEVD_DISABLE_FILE_VALIDATION=1
 WORKDIR /tmp
 COPY installmkl.sh ./installmkl.sh
 RUN chmod 700 ./installmkl.sh && ./installmkl.sh
+COPY --from=assembled /opt/python/py311 /opt/python/py311
 COPY --from=built_git /opt/git /opt/git
 ENV LD_LIBRARY_PATH=/opt/python/py311/lib:${LD_LIBRARY_PATH}
 ENV PATH=/opt/git/bin:/opt/python/py311/bin:${PATH}
