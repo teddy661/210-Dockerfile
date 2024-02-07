@@ -80,6 +80,7 @@ RUN . /app/venv/bin/activate && \
                 pipdeptree \
                 bottleneck \ 
                 pytest \
+                hypothesis \
                 zstandard \
                 cloudpickle \
                 connectorx \
