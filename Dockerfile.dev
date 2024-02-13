@@ -54,7 +54,7 @@ RUN . /app/venv/bin/activate && \
                 mypy \
                 "pandas[performance, excel, computation, plot, output_formatting, html, parquet, hdf5]" \
                 tables \
-                "polars[all]" \
+                "polars[all]==0.20.6" \
                 polars-cli \
                 openpyxl \
                 apsw \
