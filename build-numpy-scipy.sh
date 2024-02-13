@@ -25,7 +25,7 @@ python -m venv  ${BUILD_NUMPY_ENV_ROOT}
 pip install --upgrade pip
 mkdir /tmp/numpy
 cd /tmp/numpy
-NP_VERSION=1.26.3
+NP_VERSION=1.26.4
 git clone https://github.com/numpy/numpy.git
 cd numpy
 git checkout v${NP_VERSION}
