@@ -152,7 +152,14 @@ RUN mkdir /opt/nodejs && \
         npm install -g npm && npm install -g yarn
 RUN mkdir /opt/nvim && \
     cd /opt/nvim && \
-    curl -L https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz | tar -zxf - 
+    curl -L https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz | tar -zxf -
+ARG GIT_LFS_VERSION=3.4.1
+RUN mkdir git-lfs && \
+    cd git-lfs && \
+    curl -L https://github.com/git-lfs/git-lfs/releases/download/v3.4.1/git-lfs-linux-amd64-v${GIT_LFS_VERSION}.tar.gz | tar -zxf - && \
+    cd git-lfs-${GIT_LFS_VERSION} && \
+    ./install.sh && \
+    rm -rf /tmp/git-lfs
 ENV PATH=/opt/nodejs/node-v${INSTALL_NODE_VERSION}-linux-x64/bin:/opt/nvim/nvim-linux64/bin:${PATH}
 RUN ssh-keygen -f /etc/ssh/ssh_host_rsa_key -N '' -t rsa \
     && ssh-keygen -f /etc/ssh/ssh_host_dsa_key -N '' -t dsa \
