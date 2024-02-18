@@ -153,13 +153,6 @@ RUN mkdir /opt/nodejs && \
 RUN mkdir /opt/nvim && \
     cd /opt/nvim && \
     curl -L https://github.com/neovim/neovim/releases/download/stable/nvim-linux64.tar.gz | tar -zxf -
-ARG GIT_LFS_VERSION=3.4.1
-RUN mkdir git-lfs && \
-    cd git-lfs && \
-    curl -L https://github.com/git-lfs/git-lfs/releases/download/v3.4.1/git-lfs-linux-amd64-v${GIT_LFS_VERSION}.tar.gz | tar -zxf - && \
-    cd git-lfs-${GIT_LFS_VERSION} && \
-    ./install.sh && \
-    rm -rf /tmp/git-lfs
 ENV PATH=/opt/nodejs/node-v${INSTALL_NODE_VERSION}-linux-x64/bin:/opt/nvim/nvim-linux64/bin:${PATH}
 RUN ssh-keygen -f /etc/ssh/ssh_host_rsa_key -N '' -t rsa \
     && ssh-keygen -f /etc/ssh/ssh_host_dsa_key -N '' -t dsa \
@@ -175,10 +168,18 @@ COPY --from=assembled /opt/python/py311 /opt/python/py311
 COPY --from=built_git /opt/git /opt/git
 ENV LD_LIBRARY_PATH=/opt/python/py311/lib:${LD_LIBRARY_PATH}
 ENV PATH=/opt/git/bin:/opt/python/py311/bin:${PATH}
+ARG GIT_LFS_VERSION=3.4.1
+RUN mkdir git-lfs && \
+    cd git-lfs && \
+    curl -L https://github.com/git-lfs/git-lfs/releases/download/v3.4.1/git-lfs-linux-amd64-v${GIT_LFS_VERSION}.tar.gz | tar -zxf - && \
+    cd git-lfs-${GIT_LFS_VERSION} && \
+    ./install.sh && \
+    cd /tmp && \
+    rm -rf /tmp/git-lfs
 COPY --from=assembled /app/venv /app/venv/
 ENV PATH /app/venv/bin:$PATH
 WORKDIR /root
-COPY . .
+COPY ./root /root
 COPY entrypoint.sh /usr/local/bin
 RUN chmod 755 /usr/local/bin/entrypoint.sh
 ENV TERM=xterm-256color
