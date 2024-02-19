@@ -71,11 +71,10 @@ RUN . /app/venv/bin/activate && \
                 sklearn-pandas \
                 statsmodels \
                 joblib \
-                black[jupyter] \
-                nbqa[toolchain] \
+                "black[jupyter]" \
                 isort \
                 yapf \
-                nbqa[toolchain] \
+                "nbqa[toolchain]" \
                 ruff \
                 pipdeptree \
                 bottleneck \ 
@@ -89,10 +88,10 @@ RUN . /app/venv/bin/activate && \
                 requests \
                 niquests \
                 httpx \
-                fastapi[all] \
+                "fastapi[all]" \
                 python-multipart \
                 pydantic \
-                uvicorn[standard] \
+                "uvicorn[standard]" \
                 hydra-core \
                 mlxtend \
                 pyyaml \
@@ -104,7 +103,7 @@ RUN . /app/venv/bin/activate && \
                                     -o \
                                     \( -type f -a \( -name '*.pyc' -o -name '*.pyo' \) \) \
                                 \) -exec rm -rf '{}' +;           
-
+RUN . /app/venv/bin/activate && pip3 install -U --no-cache-dir --no-dependencies qudida albumentations
 FROM nvidia/cuda:12.2.2-cudnn8-runtime-rockylinux8 as prod
 RUN yum install dnf-plugins-core -y && \
     dnf install epel-release -y && \
