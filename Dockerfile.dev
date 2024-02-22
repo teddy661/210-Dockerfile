@@ -56,6 +56,7 @@ RUN . /app/venv/bin/activate && \
                 tables \
                 "polars[all]" \
                 polars-cli \
+                fastexcel \
                 openpyxl \
                 apsw \
                 pydot \
@@ -89,6 +90,7 @@ RUN . /app/venv/bin/activate && \
                 niquests \
                 httpx \
                 "fastapi[all]" \
+                "fastapi-cache2[redis]"" \
                 python-multipart \
                 pydantic \
                 "uvicorn[standard]" \
