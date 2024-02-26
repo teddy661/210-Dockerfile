@@ -31,12 +31,12 @@ RUN . /app/venv/bin/activate && \
                 pillow \
                 heic2png \
                 matplotlib \
-                aiohttp[speedups] \
+                "aiohttp[speedups]" \
                 jupyterlab>=4.0.11 \
                 jupyterlab-lsp==5.0.3 \
                 jupyter-lsp==2.2.2 \
                 jupyter_server \
-                python-lsp-server[all] \
+                "python-lsp-server[all]" \
                 ipywidgets \
                 jupyter_bokeh \
                 jupyter-server-proxy \
@@ -46,7 +46,7 @@ RUN . /app/venv/bin/activate && \
                 ipyparallel \
                 ipython \
                 tqdm \
-                papermill[all] \
+                "papermill[all]" \
                 bokeh \
                 seaborn \
                 blake3 \
@@ -90,7 +90,7 @@ RUN . /app/venv/bin/activate && \
                 niquests \
                 httpx \
                 "fastapi[all]" \
-                "fastapi-cache2[redis]"" \
+                "fastapi-cache2[redis]" \
                 python-multipart \
                 pydantic \
                 "uvicorn[standard]" \
