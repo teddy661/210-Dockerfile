@@ -33,8 +33,8 @@ RUN . /app/venv/bin/activate && \
                 matplotlib \
                 "aiohttp[speedups]" \
                 jupyterlab>=4.0.11 \
-                jupyterlab-lsp==5.0.3 \
-                jupyter-lsp==2.2.2 \
+                jupyterlab-lsp==5.1.0 \
+                jupyter-lsp==2.2.3 \
                 jupyter_server \
                 "python-lsp-server[all]" \
                 ipywidgets \
