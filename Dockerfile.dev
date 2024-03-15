@@ -26,15 +26,15 @@ RUN . /app/venv/bin/activate && \
         pip3 install --no-cache-dir --upgrade setuptools wheel && \
         pip3 install --no-cache-dir /tmp/numpy-${PY_NP_VERSION}-cp311-cp311-linux_x86_64.whl /tmp/scipy-${PY_SCIPY_VERSION}-cp311-cp311-linux_x86_64.whl /tmp/xgboost-${XGB_VERSION}-py3-none-linux_x86_64.whl /tmp/xgboost-${XGB_VERSION}-py3-none-linux_x86_64.whl && \
         pip3 install --no-cache-dir \
-                tensorflow==2.15.0.post1 \
+                tensorflow==2.15.1 \
                 opencv-contrib-python-headless \
                 pillow \
                 heic2png \
                 matplotlib \
                 "aiohttp[speedups]" \
                 jupyterlab>=4.0.11 \
-                jupyterlab-lsp==5.1.0 \
-                jupyter-lsp==2.2.3 \
+                jupyterlab-lsp>=5.1.0 \
+                jupyter-lsp>=2.2.3 \
                 jupyter_server \
                 "python-lsp-server[all]" \
                 ipywidgets \
@@ -54,7 +54,7 @@ RUN . /app/venv/bin/activate && \
                 mypy \
                 "pandas[performance, excel, computation, plot, output_formatting, html, parquet, hdf5]" \
                 tables \
-                "polars[all]" \
+                "polars[pandas, numpy, pyarrow, fsspec, connectorx, xlsx2csv, deltalake, timezone]" \
                 polars-cli \
                 fastexcel \
                 openpyxl \
@@ -94,8 +94,6 @@ RUN . /app/venv/bin/activate && \
                 python-multipart \
                 pydantic \
                 "uvicorn[standard]" \
-                hydra-core \
-                mlxtend \
                 pyyaml \
                 xlsx2csv \
                 cython \

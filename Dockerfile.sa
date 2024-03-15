@@ -35,12 +35,12 @@ RUN . /app/venv/bin/activate && \
                 pillow \
                 heic2png \
                 matplotlib \
-                aiohttp[speedups] \
+                "aiohttp[speedups]" \
                 jupyterlab>=4.0.11 \
-                jupyterlab-lsp==5.1.0 \
-                jupyter-lsp==2.2.3 \
+                jupyterlab-lsp>=5.1.0 \
+                jupyter-lsp>=2.2.3 \
                 jupyter_server \
-                python-lsp-server[all] \
+                "python-lsp-server[all]" \
                 ipywidgets \
                 jupyter_bokeh \
                 jupyter-server-proxy \
@@ -50,7 +50,7 @@ RUN . /app/venv/bin/activate && \
                 ipyparallel \
                 ipython \
                 tqdm \
-                papermill[all] \
+                "papermill[all]" \
                 bokeh \
                 seaborn \
                 blake3 \
@@ -58,7 +58,7 @@ RUN . /app/venv/bin/activate && \
                 mypy \
                 "pandas[performance, excel, computation, plot, output_formatting, html, parquet, hdf5]" \
                 tables \
-                "polars[all]" \
+                "polars[pandas, numpy, pyarrow, fsspec, connectorx, xlsx2csv, deltalake, timezone]" \
                 polars-cli \
                 fastexcel \
                 openpyxl \
@@ -97,7 +97,8 @@ RUN . /app/venv/bin/activate && \
                 "fastapi-cache2[redis]" \
                 python-multipart \
                 pydantic \
-                uvicorn[standard] \
+                "uvicorn[standard]" \
+                pyyaml \
                 xlsx2csv \
 		cython && \
                 find ./ \
